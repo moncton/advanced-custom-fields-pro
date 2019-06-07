@@ -5038,18 +5038,22 @@ function acf_array_camel_case( $array = array() ) {
 }
 
 /**
-*  acf_is_block_editor
-*
-*  Returns true if the current screen uses the block editor.
-*
-*  @date	13/12/18
-*  @since	5.8.0
-*
-*  @return	bool
-*/
+ * acf_is_block_editor
+ *
+ * Returns true if the current screen uses the block editor.
+ *
+ * @date	13/12/18
+ * @since	5.8.0
+ *
+ * @param	void
+ * @return	bool
+ */
 function acf_is_block_editor() {
-	if( method_exists(get_current_screen(), 'is_block_editor') ) {
-		return get_current_screen()->is_block_editor();
+	if( function_exists('get_current_screen') ) {
+		$screen = get_current_screen();
+		if( method_exists($screen, 'is_block_editor') ) {
+			return $screen->is_block_editor();
+		}
 	}
 	return false;
 }
