@@ -2,11 +2,11 @@
     "name": "moncton/advanced-custom-fields-pro",
     "description": "Customize WordPress with powerful, professional and intuitive fields.",
     "type": "wordpress-plugin",
-	"version": "1.8.1",
+	"version": "5.8.6",
 	"homepage": "https://www.advancedcustomfields.com",
-	"time": "2019-06-04",
+	"time": "2019-10-24",
     "require": {
-        "composer/installers": "^1.6"
+        "composer/installers": ">=1.0"
     },
     "license": "GPLv2 or later",
     "authors": [
@@ -14,6 +14,5 @@
             "name": "Elliot Condon",
             "email": "e@elliotcondon.com"
         }
-    ],
-    "minimum-stability": "stable"
+    ]
 }
