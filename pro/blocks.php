@@ -415,7 +415,7 @@ function acf_enqueue_block_type_assets( $block_type ) {
 	
 	// Enqueue assets callback.
 	if( $block_type['enqueue_assets'] && is_callable($block_type['enqueue_assets']) ) {
-		call_user_func( $block_type['enqueue_assets'] );
+		call_user_func( $block_type['enqueue_assets'], $block_type );
 	}
 }
 
@@ -534,7 +534,7 @@ function acf_parse_save_blocks( $text = '' ) {
 	// Search text for dynamic blocks and modify attrs.
 	return addslashes(
 		preg_replace_callback(
-			'/<!--\s+wp:(?P<name>[\S]+)\s+(?P<attrs>{[\S\s]+?})\s+\/-->/',
+			'/<!--\s+wp:(?P<name>[\S]+)\s+(?P<attrs>{[\S\s]+?})\s+(?P<void>\/)?-->/',
 			'acf_parse_save_blocks_callback',
 			stripslashes( $text )
 		)
@@ -560,6 +560,7 @@ function acf_parse_save_blocks_callback( $matches ) {
 	// Defaults
 	$name = isset($matches['name']) ? $matches['name'] : '';
 	$attrs = isset($matches['attrs']) ? json_decode( $matches['attrs'], true) : '';
+	$void = isset($matches['void']) ? $matches['void'] : '';
 	
 	// Bail early if missing data or not an ACF Block.
 	if( !$name || !$attrs || !acf_has_block_type($name) ) {
@@ -588,5 +589,5 @@ function acf_parse_save_blocks_callback( $matches ) {
 	$attrs = apply_filters( 'acf/pre_save_block', $attrs );
 	
 	// Return new comment
-	return '<!-- wp:' . $name . ' ' . acf_json_encode($attrs) . ' /-->';
+	return '<!-- wp:' . $name . ' ' . acf_json_encode($attrs) . ' ' . $void . '-->';
 }
