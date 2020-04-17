@@ -2,7 +2,7 @@
     "name": "moncton/advanced-custom-fields-pro",
     "description": "Customize WordPress with powerful, professional and intuitive fields.",
     "type": "wordpress-plugin",
-	  "version": "5.8.7",
+	  "version": "5.8.9",
 	  "homepage": "https://www.advancedcustomfields.com",
 	  "time": "2019-10-24",
     "require": {
